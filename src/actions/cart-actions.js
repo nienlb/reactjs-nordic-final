@@ -10,9 +10,9 @@ export function addToCart(product) {
   };
 }
 
-export function removeFromCart(product) {
+export function removeFromCart(id) {
   return {
     type: REMOVE_FROM_CART,
-    product,
+    id,
   };
 }

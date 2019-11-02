@@ -8,8 +8,8 @@ class MiniCart extends Component {
     deleteItem: PropTypes.func,
   };
 
-  handleDeleteClick = () => {
-    this.props.deleteItem(123);
+  handleDeleteClick = (id) => {
+    this.props.deleteItem(id);
   };
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class MiniCart extends Component {
             </div>
           </div>
           <div className="del-icon">
-            <a href="#" onClick={this.handleDeleteClick}>
+            <a href="#" onClick={() => this.handleDeleteClick(item.id)}>
               <i className="far fa-trash-alt" />
             </a>
           </div>
@@ -97,15 +97,15 @@ function mapsStateToProps(state, ownProps) {
   };
 }
 
-// function mapDispatchToProps(dispatch) {
-//   return {
-//     deleteItem(id) {
-//       dispatch(removeFromCart(id));
-//     },
-//   };
-// }
+function mapDispatchToProps(dispatch) {
+  return {
+    deleteItem(id){
+      dispatch(removeFromCart(id));
+    },
+  };
+}
 
 export default connect(
   mapsStateToProps,
-  null,
+  mapDispatchToProps,
 )(MiniCart);
