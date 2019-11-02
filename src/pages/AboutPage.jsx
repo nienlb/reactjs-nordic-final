@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 export default class AboutPage extends Component {
   render() {
-
-    console.log(this.props.match)
     return (
       <section className="pt-150 pb-100">
         <div className="container">

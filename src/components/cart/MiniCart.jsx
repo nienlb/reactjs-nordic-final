@@ -12,12 +12,42 @@ class MiniCart extends Component {
     this.props.deleteItem(123);
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    console.log(this.props.items)
+  }
 
   render() {
+    let itemList = this.props.items.map(item => {
+      return (
+        <li key={item.id}>
+          <div className="cart-img">
+            <a href="#">
+              <img src={item.img_url} alt="" />
+            </a>
+          </div>
+          <div className="cart-content">
+            <h3>
+              <a href="#">{item.name}</a>
+            </h3>
+            <div className="cart-price">
+              <span className="new">{item.price}</span>
+              <span>
+                <del>{item.price}</del>
+              </span>
+            </div>
+          </div>
+          <div className="del-icon">
+            <a href="#" onClick={this.handleDeleteClick}>
+              <i className="far fa-trash-alt" />
+            </a>
+          </div>
+        </li>
+      )
+    })
     return (
       <ul className="minicart">
-        <li>
+        {itemList}
+        {/* <li>
           <div className="cart-img">
             <a href="#">
               <img src="./assets/pro1.jpg" alt="" />
@@ -39,57 +69,11 @@ class MiniCart extends Component {
               <i className="far fa-trash-alt" />
             </a>
           </div>
-        </li>
-        <li>
-          <div className="cart-img">
-            <a href="#">
-              <img src="./assets/pro2.jpg" alt="" />
-            </a>
-          </div>
-          <div className="cart-content">
-            <h3>
-              <a href="#">Black &amp; White Shoes</a>
-            </h3>
-            <div className="cart-price">
-              <span className="new">$ 229.9</span>
-              <span>
-                <del>$239.9</del>
-              </span>
-            </div>
-          </div>
-          <div className="del-icon">
-            <a href="#" onClick={this.handleDeleteClick}>
-              <i className="far fa-trash-alt" />
-            </a>
-          </div>
-        </li>
-        <li>
-          <div className="cart-img">
-            <a href="#">
-              <img src="./assets/pro3.jpg" alt="" />
-            </a>
-          </div>
-          <div className="cart-content">
-            <h3>
-              <a href="#">Black &amp; White Shoes</a>
-            </h3>
-            <div className="cart-price">
-              <span className="new">$ 229.9</span>
-              <span>
-                <del>$239.9</del>
-              </span>
-            </div>
-          </div>
-          <div className="del-icon">
-            <a href="#" onClick={this.handleDeleteClick}>
-              <i className="far fa-trash-alt" />
-            </a>
-          </div>
-        </li>
+        </li> */}
         <li>
           <div className="total-price">
             <span className="f-left">Total:</span>
-            <span className="f-right">$300.0</span>
+            <span className="f-right">${this.props.total}</span>
           </div>
         </li>
         <li>
@@ -105,17 +89,23 @@ class MiniCart extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({});
-
-function mapDispatchToProps(dispatch) {
+function mapsStateToProps(state, ownProps) {
+  const { cartItem: { items, total } } = state
   return {
-    deleteItem(id) {
-      dispatch(removeFromCart(id));
-    },
+    items,
+    total
   };
 }
 
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     deleteItem(id) {
+//       dispatch(removeFromCart(id));
+//     },
+//   };
+// }
+
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapsStateToProps,
+  null,
 )(MiniCart);

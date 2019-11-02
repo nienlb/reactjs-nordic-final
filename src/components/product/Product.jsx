@@ -8,45 +8,42 @@ export default class Product extends Component {
   };
 
   render() {
-    const { name, image, image2, category, discountPrice, price, id } = this.props;
+    const { name, img_url, img_url_mob, shop_name, is_promotion, price, product_id } = this.props;
 
     return (
 
       <div className="col-xl-4 col-lg-6 col-md-6">
-        <Link
-          to={`/about/${id}`}>
-          <div className="product-wrapper mb-50">
-            <div className="product-img mb-25">
-              <a href="#">
-                <img src={image} alt={name} />
-                <img className="secondary-img" src={image2} alt={name} />
+        <div className="product-wrapper mb-50">
+          <div className="product-img mb-25">
+            <Link to={`/products/${product_id}`}>
+              <img src={img_url} alt={name} />
+              <img className="secondary-img" src={img_url_mob} alt={name} />
+            </Link>
+            <div className="product-action text-center">
+              <a title="Shoppingb Cart" onClick={this.handleCartClick}>
+                <i className="fas fa-shopping-cart" />
               </a>
-              <div className="product-action text-center">
-                <a title="Shoppingb Cart" onClick={this.handleCartClick}>
-                  <i className="fas fa-shopping-cart" />
-                </a>
-                <a href="#" title="Quick View">
-                  <i className="fas fa-search" />
-                </a>
-              </div>
+              <Link to={`/products/${product_id}`} title="Quick View">
+                <i className="fas fa-search" />
+              </Link>
             </div>
-            <div className="product-content pr-0">
-              <div className="pro-cat mb-10">
-                <a href="#">{category}</a>
-              </div>
-              <h4>
-                <a href="#">{name}</a>
-              </h4>
-              <div className="product-meta">
-                <div className="pro-price">
-                  <span>${discountPrice} USD</span>
-                  <span className="old-price">${price} USD</span>
-                </div>
+          </div>
+          <div className="product-content pr-0">
+            <div className="pro-cat mb-10">
+              <a href="#">{shop_name}</a>
+            </div>
+            <h4>
+              <a href="#">{name}</a>
+            </h4>
+            <div className="product-meta">
+              <div className="pro-price">
+                <span>${is_promotion} USD</span>
+                <span className="old-price">${price} USD</span>
               </div>
             </div>
           </div>
-        </Link>
-      </div>
+        </div>
+      </div >
     );
   }
 }

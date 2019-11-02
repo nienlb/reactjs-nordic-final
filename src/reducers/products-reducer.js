@@ -2,18 +2,25 @@ import {
   FETCH_PRODUCTS,
   FETCH_PRODUCTS_FAILED,
   RECEIVE_PRODUCTS,
+  FETCH_PRODUCTS_DETAIL,
+  FETCH_PRODUCTS_DETAIL_FAILED,
+  RECEIVE_PRODUCTS_DETAIL,
 } from '../actions/products-actions'
 
 
-const initialState = {
+const initialListState = {
   isFetching: false,
   page: 0,
   pageSize: 0,
   total: 0,
   items: [],
 }
+const initialDetailState = {
+  isFetching: false,
+  detail: [],
+}
 
-export default function productsReducer(state = initialState, action) {
+export function productsReducer(state = initialListState, action) {
 
   switch (action.type) {
     case FETCH_PRODUCTS:
@@ -23,17 +30,44 @@ export default function productsReducer(state = initialState, action) {
       }
     case RECEIVE_PRODUCTS:
       {
-        const { status, data } = action.data;
+        const { meta_data, data , product_total} = action.data;
         return {
           ...state,
           isFetching: false,
           items: data,
-          pageSize: status.pageSize,
-          page: status.page,
-          total: status.total
+          pageSize: data.length,
+          page: meta_data.current_page,
+          total: product_total
         }
       }
     case FETCH_PRODUCTS_FAILED:
+      return {
+        ...state,
+        isFetching: false,
+      }
+    default:
+      return state
+  }
+}
+
+export function productsDetailReducer(state = initialDetailState, action) {
+
+  switch (action.type) {
+    case FETCH_PRODUCTS_DETAIL:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case RECEIVE_PRODUCTS_DETAIL:
+      {
+        // const { description } = action.data;
+        return {
+          ...state,
+          isFetching: false,
+          detail: action.data
+        }
+      }
+    case FETCH_PRODUCTS_DETAIL_FAILED:
       return {
         ...state,
         isFetching: false,

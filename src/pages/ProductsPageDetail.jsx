@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import ProductGrid from '../components/product/ProductGrid';
+import ProductDetail from '../components/product/productDetail';
 import SideBar from '../components/sidebar/SideBar';
 
-export default class ProductsPage extends Component {
+export default class ProductsPageDetail extends Component {
   render() {
     return (
       <section className="shop-area pt-150 pb-100">
         <div className="container">
           <div className="row">
-            <ProductGrid />
-            <SideBar />
+            <ProductDetail productId={this.props.match.params.productId} />
           </div>
         </div>
       </section>

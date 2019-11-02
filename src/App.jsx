@@ -9,6 +9,7 @@ import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import ContactPage from './pages/ContactPage';
 import AboutPage from './pages/AboutPage';
+import ProductsPageDetail from './pages/ProductsPageDetail';
 
 import './App.css';
 
@@ -21,7 +22,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route path="/about" component={AboutPage} />
-            <Route path="/product/:productId" component={AboutPage} />
+            <Route path="/products/:productId" component={ProductsPageDetail} />
             <Route path="/products" component={ProductsPage} />
             <Route path="/contact" component={ContactPage} />
           </Switch>
