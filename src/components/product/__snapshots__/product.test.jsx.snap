@@ -1,0 +1,78 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Products component 1`] = `
+<div
+  className="col-xl-4 col-lg-6 col-md-6"
+>
+  <div
+    className="product-wrapper mb-50"
+  >
+    <div
+      className="product-img mb-25"
+    >
+      <a
+        href="#"
+      >
+        <img />
+        <img
+          className="secondary-img"
+        />
+      </a>
+      <div
+        className="product-action text-center"
+      >
+        <a
+          onClick={[Function]}
+          title="Shoppingb Cart"
+        >
+          <i
+            className="fas fa-shopping-cart"
+          />
+        </a>
+        <a
+          href="#"
+          title="Quick View"
+        >
+          <i
+            className="fas fa-search"
+          />
+        </a>
+      </div>
+    </div>
+    <div
+      className="product-content pr-0"
+    >
+      <div
+        className="pro-cat mb-10"
+      >
+        <a
+          href="#"
+        />
+      </div>
+      <h4>
+        <a
+          href="#"
+        />
+      </h4>
+      <div
+        className="product-meta"
+      >
+        <div
+          className="pro-price"
+        >
+          <span>
+            $
+             USD
+          </span>
+          <span
+            className="old-price"
+          >
+            $
+             USD
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
