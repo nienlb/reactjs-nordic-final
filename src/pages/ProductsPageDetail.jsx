@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductDetail from '../components/product/productDetail';
-import SideBar from '../components/sidebar/SideBar';
+// import SideBar from '../components/sidebar/SideBar';
 
 export default class ProductsPageDetail extends Component {
   render() {
@@ -15,3 +15,4 @@ export default class ProductsPageDetail extends Component {
     );
   }
 }
+

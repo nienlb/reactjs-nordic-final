@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 
-export default class SideBar extends Component {
+import { connect } from 'react-redux';
+
+// import {sortProductAZ , sortProductZA} from '../../actions/products-actions'
+
+export class SideBar extends Component {
+
+  // handleSortAZ = (product) => {
+  //   this.props.sortProductAZ(product)
+  // }
+  // handleSortZA = (product) => {
+  //   this.props.sortProductZA(product)
+  // }
+
   render() {
     return (
       <div className="col-xl-3 col-lg-4">
@@ -26,10 +38,10 @@ export default class SideBar extends Component {
             <h3 className="shop-title">SHOP BY</h3>
             <ul className="shop-link">
               <li>
-                <a href="#">Name: A-Z</a>
+                <a href="#" onClick={ () => this.handleSortAZ(this.props.items)}>Name: A-Z</a>
               </li>
               <li>
-                <a href="#">Name: Z-A</a>
+                <a href="#" onClick={ () => this.handleSortZA(this.props.items)}>Name: Z-A</a>
               </li>
               <li>
                 <a href="#">Price: High to Low</a>
@@ -125,3 +137,17 @@ export default class SideBar extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { products :{items} } = state
+  return {
+    items
+  }
+}
+
+// const mapDispatchToProps = {
+//   sortProductAZ,
+//   sortProductZA
+// }
+
+export default connect(mapStateToProps, null)(SideBar);

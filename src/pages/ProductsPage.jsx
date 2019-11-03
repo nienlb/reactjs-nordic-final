@@ -8,8 +8,7 @@ export default class ProductsPage extends Component {
       <section className="shop-area pt-150 pb-100">
         <div className="container">
           <div className="row">
-            <ProductGrid />
-            <SideBar />
+            <ProductGrid  />
           </div>
         </div>
       </section>

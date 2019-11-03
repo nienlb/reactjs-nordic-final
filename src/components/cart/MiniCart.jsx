@@ -47,29 +47,6 @@ class MiniCart extends Component {
     return (
       <ul className="minicart">
         {itemList}
-        {/* <li>
-          <div className="cart-img">
-            <a href="#">
-              <img src="./assets/pro1.jpg" alt="" />
-            </a>
-          </div>
-          <div className="cart-content">
-            <h3>
-              <a href="#">Black &amp; White Shoes</a>
-            </h3>
-            <div className="cart-price">
-              <span className="new">$ 229.9</span>
-              <span>
-                <del>$239.9</del>
-              </span>
-            </div>
-          </div>
-          <div className="del-icon">
-            <a href="#" onClick={this.handleDeleteClick}>
-              <i className="far fa-trash-alt" />
-            </a>
-          </div>
-        </li> */}
         <li>
           <div className="total-price">
             <span className="f-left">Total:</span>

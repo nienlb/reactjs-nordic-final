@@ -8,10 +8,8 @@ export default class Product extends Component {
   };
 
   render() {
-    const { name, img_url, img_url_mob, shop_name, is_promotion, price, product_id } = this.props;
-
+    const { name, img_url, img_url_mob, shop_name, is_promotion, price , price_max, product_id } = this.props;
     return (
-
       <div className="col-xl-4 col-lg-6 col-md-6">
         <div className="product-wrapper mb-50">
           <div className="product-img mb-25">
@@ -37,8 +35,8 @@ export default class Product extends Component {
             </h4>
             <div className="product-meta">
               <div className="pro-price">
-                <span>${is_promotion} USD</span>
-                <span className="old-price">${price} USD</span>
+                <span>${price} USD</span>
+                <span className="old-price">${price_max} USD</span>
               </div>
             </div>
           </div>

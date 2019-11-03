@@ -5,6 +5,8 @@ import {
   FETCH_PRODUCTS_DETAIL,
   FETCH_PRODUCTS_DETAIL_FAILED,
   RECEIVE_PRODUCTS_DETAIL,
+  // SORT_PRODUCTS_AZ,
+  // SORT_PRODUCTS_ZA
 } from '../actions/products-actions'
 
 
@@ -20,6 +22,7 @@ const initialDetailState = {
   detail: [],
 }
 
+
 export function productsReducer(state = initialListState, action) {
 
   switch (action.type) {
@@ -30,7 +33,7 @@ export function productsReducer(state = initialListState, action) {
       }
     case RECEIVE_PRODUCTS:
       {
-        const { meta_data, data , product_total} = action.data;
+        const { meta_data, data, product_total } = action.data;
         return {
           ...state,
           isFetching: false,
@@ -45,6 +48,16 @@ export function productsReducer(state = initialListState, action) {
         ...state,
         isFetching: false,
       }
+    // case SORT_PRODUCTS_AZ:
+    //   return {
+    //     ...state,
+    //     items: action.product_new
+    //   }
+    // case SORT_PRODUCTS_ZA:
+    //   return {
+    //     ...state,
+    //     items: action.product_new
+    //   }
     default:
       return state
   }
@@ -60,7 +73,6 @@ export function productsDetailReducer(state = initialDetailState, action) {
       }
     case RECEIVE_PRODUCTS_DETAIL:
       {
-        // const { description } = action.data;
         return {
           ...state,
           isFetching: false,
