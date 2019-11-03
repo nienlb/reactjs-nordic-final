@@ -1,0 +1,9 @@
+.name{
+  color: black
+}
+.price{
+  color: black
+}
+.size li {
+  display: inline;
+}

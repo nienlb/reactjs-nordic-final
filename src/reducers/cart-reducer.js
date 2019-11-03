@@ -22,8 +22,9 @@ export default function cartReducer(state = initialState, action) {
     case REMOVE_FROM_CART: {
       let itemToRemove= state.items.find(item=> action.id === item.id)
       let new_items = state.items.filter(item=> action.id !== item.id)
-      let newTotal = state.total - (itemToRemove.price)
-      let cartItemCount = state.cartItemCount - 1;
+      let count = state.items.length - new_items.length
+      let newTotal = state.total - (itemToRemove.price*count)
+      let cartItemCount = state.cartItemCount - count;
       if (cartItemCount < 0) cartItemCount = 0;
       return {
         ...state,

@@ -26,7 +26,7 @@ export class ProductGrid extends Component {
       let y = b.name.toLowerCase();
       return x < y ? -1 : x > y ? 1 : 0;
     });
-    this.setState({value: product_new})
+    this.setState({ value: product_new })
   }
   handleSortZA = (product) => {
     let product_new = product.sort((a, b) => {
@@ -50,12 +50,13 @@ export class ProductGrid extends Component {
     this.setState({ value: product_new })
   }
 
-  componentDidMount() {
-    this.props.fetchProducts();
+  componentDidMount = async () => {
+    await this.props.fetchProducts();
+    this.setState({ value: this.props.items })
   }
 
   render() {
-    const { total, from, to, isFetching } = this.props
+    const { total, from, to, isFetching, items } = this.props
     return (
       (isFetching) ?
         <Preloader visible /> :
@@ -77,9 +78,15 @@ export class ProductGrid extends Component {
                 aria-labelledby="home-tab"
               >
                 <div className="row">
-                  {this.state.value.map((product) => (
-                    <Product key={product.id} {...product} onClick={this.handleProductClick} />
-                  ))}
+                  {
+                    (this.state.value) ?
+                      items.map((product) => (
+                        <Product key={product.id} {...product} onClick={this.handleProductClick} />
+                      )) :
+                      this.state.value.map((product) => (
+                        <Product key={product.id} {...product} onClick={this.handleProductClick} />
+                      ))
+                  }
                 </div>
               </div>
             </div>
@@ -96,7 +103,7 @@ export class ProductGrid extends Component {
                     <a href="#" onClick={() => this.handleSortZA(this.props.items)}>Name: Z-A</a>
                   </li>
                   <li>
-                    <a href="#"  onClick={() => this.handleSortH2L(this.props.items)}>Price: High to Low</a>
+                    <a href="#" onClick={() => this.handleSortH2L(this.props.items)}>Price: High to Low</a>
                   </li>
                   <li>
                     <a href="#" onClick={() => this.handleSortL2H(this.props.items)}>Price: Low to High</a>

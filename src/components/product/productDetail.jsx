@@ -8,14 +8,19 @@ import { addToCart } from '../../actions/cart-actions'
 
 import { fetchProductsDetail } from '../../actions/products-actions'
 
+import style from '../../css/productDetail.module.css'
+
 export class ProductDetail extends Component {
+
+  handleCartClick = (product) => {
+    this.props.addToCart(product)
+  };
 
   handleProductClick = (propduct) => {
     this.props.addToCart(propduct)
   }
 
   componentDidMount() {
-    // console.log('day la:' , this.props.productId)
     this.props.fetchProductsDetail(this.props.productId);
   }
   render() {
@@ -40,23 +45,19 @@ export class ProductDetail extends Component {
             </div>
           </div>
           <div className="col-xl-5 col-lg-6">
-            <p> {detail.name}</p>
-            <p> {detail.price}</p>
-            <ul>
+            <p className={style.name}>Tên sản phẩm : {detail.name}</p>
+            <p className={style.price}>Giá : {detail.price}</p>
+            <ul className={style.size}>
+              Size:
               {detail.attribute &&
-                detail.attribute[0].value.map(item => <li>{item.value}</li>)
+                detail.attribute[0].value.map(item => <li> {item.value} </li>)
               }
             </ul>
-
             <p> Số lượng :  {detail.quantity}</p>
-            <div className="product-action text-center">
-              <a title="Shoppingb Cart" onClick={this.handleCartClick}>
-                <i className="fas fa-shopping-cart" />
-              </a>
-              <a href="#" title="Quick View">
-                <i className="fas fa-search" />
-              </a>
-            </div>
+
+            <button onClick={() => this.handleCartClick(detail)}>
+                Cart
+            </button>
           </div>
         </>)
     );
