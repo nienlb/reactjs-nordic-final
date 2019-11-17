@@ -12,42 +12,8 @@ import { fetchProducts } from '../../actions/products-actions'
 
 export class ProductGrid extends Component {
 
-  state = {
-    value: this.props.items
-  }
-
   handleProductClick = (product) => {
     this.props.addToCart(product)
-  }
-
-  handleSortAZ = (product) => {
-    let product_new = product.sort((a, b) => {
-      let x = a.name.toLowerCase();
-      let y = b.name.toLowerCase();
-      return x < y ? -1 : x > y ? 1 : 0;
-    });
-    this.setState({ value: product_new })
-  }
-  handleSortZA = (product) => {
-    let product_new = product.sort((a, b) => {
-      let x = a.name.toLowerCase();
-      let y = b.name.toLowerCase();
-      return y < x ? -1 : y > x ? 1 : 0;
-    });
-    this.setState({ value: product_new })
-  }
-
-  handleSortH2L = (product) => {
-    let product_new = product.sort((a, b) => b.price - a.price);
-    this.setState({ value: product_new })
-  }
-  handleSortL2H = (product) => {
-    let product_new = product.sort((a, b) => a.price - b.price);
-    this.setState({ value: product_new })
-  }
-  handleSortTop = (product) => {
-    let product_new = product.sort((a, b) => b.promotion_percent - a.promotion_percent);
-    this.setState({ value: product_new })
   }
 
   componentDidMount = async () => {
@@ -56,7 +22,7 @@ export class ProductGrid extends Component {
   }
 
   render() {
-    const { total, from, to, isFetching, items } = this.props
+    const { total, from, to, isFetching, items , sortProduct } = this.props
     return (
       (isFetching) ?
         <Preloader visible /> :
@@ -79,11 +45,11 @@ export class ProductGrid extends Component {
               >
                 <div className="row">
                   {
-                    (this.state.value) ?
+                    (sortProduct) ?
                       items.map((product) => (
                         <Product key={product.id} {...product} onClick={this.handleProductClick} />
                       )) :
-                      this.state.value.map((product) => (
+                      sortProduct.map((product) => (
                         <Product key={product.id} {...product} onClick={this.handleProductClick} />
                       ))
                   }
@@ -91,7 +57,7 @@ export class ProductGrid extends Component {
               </div>
             </div>
           </div>
-          <div className="col-xl-3 col-lg-4">
+          {/* <div className="col-xl-3 col-lg-4">
             <div className="sidebar-shop">
               <div className="shop-widget">
                 <h3 className="shop-title">SHOP BY</h3>
@@ -114,7 +80,7 @@ export class ProductGrid extends Component {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </>
     );
   }
@@ -122,13 +88,14 @@ export class ProductGrid extends Component {
 
 const mapStateToProps = (state) => {
 
-  const { products: { items, page, total, pageSize, isFetching } } = state
+  const { products: { items, page, total, pageSize, isFetching } , sortProduct } = state
   return {
     total,
     items,
     from: (total > 0) ? ((page - 1) * pageSize + 1) : 0,
     to: page * pageSize,
-    isFetching: isFetching
+    isFetching: isFetching,
+    sortProduct,
   }
 }
 

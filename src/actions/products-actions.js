@@ -6,31 +6,56 @@ export const FETCH_PRODUCTS_DETAIL = 'FETCH_PRODUCTS_DETAIL';
 export const RECEIVE_PRODUCTS_DETAIL = 'RECEIVE_PRODUCTS_DETAIL';
 export const FETCH_PRODUCTS_DETAIL_FAILED = 'FETCH_PRODUCTS_DETAIL_FAILED';
 
-// export const SORT_PRODUCTS_AZ = 'SORT_PRODUCTS_AZ';
-// export const SORT_PRODUCTS_ZA = 'SORT_PRODUCTS_ZA';
+export const SORT_PRODUCTS_AZ = 'SORT_PRODUCTS_AZ';
+export const SORT_PRODUCTS_ZA = 'SORT_PRODUCTS_ZA';
+export const SORT_PRODUCTS_H2L = 'SORT_PRODUCTS_H2L';
+export const SORT_PRODUCTS_L2H = 'SORT_PRODUCTS_L2H';
+export const SORT_PRODUCTS_TOP = 'SORT_PRODUCTS_TOP';
 
-// export function sortProductAZ(product) {
-//   let product_new = product.sort(function (a, b) {
-//     let x = a.name.toLowerCase();
-//     let y = b.name.toLowerCase();
-//     return x < y ? -1 : x > y ? 1 : 0;
-//   });
-//   return {
-//     type: SORT_PRODUCTS_AZ,
-//     product_new,
-//   };
-// }
-// export function sortProductZA(product) {
-//   let product_new = product.sort(function (a, b) {
-//     let x = a.name.toLowerCase();
-//     let y = b.name.toLowerCase();
-//     return y < x ? -1 : y > x ? 1 : 0;
-//   });
-//   return {
-//     type: SORT_PRODUCTS_ZA,
-//     product_new,
-//   };
-// }
+export function sortProductAZ(product) {
+  let product_new = product.sort(function (a, b) {
+    let x = a.name.toLowerCase();
+    let y = b.name.toLowerCase();
+    return x < y ? -1 : x > y ? 1 : 0;
+  });
+  return {
+    type: SORT_PRODUCTS_AZ,
+    product_new,
+  };
+}
+export function sortProductZA(product) {
+  let product_new = product.sort(function (a, b) {
+    let x = a.name.toLowerCase();
+    let y = b.name.toLowerCase();
+    return y < x ? -1 : y > x ? 1 : 0;
+  });
+  return {
+    type: SORT_PRODUCTS_ZA,
+    product_new,
+  };
+}
+
+export function sortProductH2L(product) {
+  let product_new = product.sort((a, b) => b.price - a.price);
+  return {
+    type: SORT_PRODUCTS_H2L,
+    product_new,
+  };
+}
+export function sortProductL2H(product) {
+  let product_new = product.sort((a, b) => a.price - b.price);
+  return {
+    type: SORT_PRODUCTS_L2H,
+    product_new,
+  };
+}
+export function sortProductTop(product) {
+  let product_new = product.sort((a, b) => b.promotion_percent - a.promotion_percent);
+  return {
+    type: SORT_PRODUCTS_TOP,
+    product_new,
+  };
+}
 
 
 export function fetchProducts() {

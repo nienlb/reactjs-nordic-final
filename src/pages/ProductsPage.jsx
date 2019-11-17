@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductGrid from '../components/product/ProductGrid';
-// import SideBar from '../components/sidebar/SideBar';
+import SideBar from '../components/sidebar/SideBar';
 
 export default class ProductsPage extends Component {
   render() {
@@ -9,6 +9,7 @@ export default class ProductsPage extends Component {
         <div className="container">
           <div className="row">
             <ProductGrid  />
+            <SideBar />
           </div>
         </div>
       </section>

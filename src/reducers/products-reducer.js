@@ -5,8 +5,11 @@ import {
   FETCH_PRODUCTS_DETAIL,
   FETCH_PRODUCTS_DETAIL_FAILED,
   RECEIVE_PRODUCTS_DETAIL,
-  // SORT_PRODUCTS_AZ,
-  // SORT_PRODUCTS_ZA
+  SORT_PRODUCTS_AZ,
+  SORT_PRODUCTS_ZA,
+  SORT_PRODUCTS_H2L,
+  SORT_PRODUCTS_L2H,
+  SORT_PRODUCTS_TOP
 } from '../actions/products-actions'
 
 
@@ -20,6 +23,42 @@ const initialListState = {
 const initialDetailState = {
   isFetching: false,
   detail: [],
+}
+
+const initialSortState = {
+
+}
+
+export function productsSortReducer(state = initialSortState, action) {
+  switch (action.type) {
+    case SORT_PRODUCTS_AZ:
+      return {
+        ...state,
+        ...action.product_new
+      }
+    case SORT_PRODUCTS_ZA:
+      return {
+        ...state,
+        ...action.product_new
+      }
+    case SORT_PRODUCTS_H2L:
+      return {
+        ...state,
+        ...action.product_new
+      }
+    case SORT_PRODUCTS_L2H:
+      return {
+        ...state,
+        ...action.product_new
+      }
+    case SORT_PRODUCTS_TOP:
+      return {
+        ...state,
+        ...action.product_new
+      }
+    default:
+      return state
+  }
 }
 
 
